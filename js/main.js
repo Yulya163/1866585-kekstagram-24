@@ -1,8 +1,4 @@
-//Функция, возвращающая случайное целое число из переданного диапазона включительно
-//имя_функции(от, до); // Результат: целое число из диапазона "от...до"
-//диапазон может быть только положительный, включая ноль.
-//А также придумайте, как функция должна вести себя, если передать значение «до» меньшее, чем значение «от», или равное ему
-const getRandomInt = function(from,to) {
+const getRandomInt = function(from, to) {
   if (from >=0 && to >= 0) {
     from = Math.ceil(from);
     to = Math.floor(to);
@@ -10,4 +6,12 @@ const getRandomInt = function(from,to) {
   }
   return 'Введите положительный диапазон';
 };
-getRandomInt(0,5);
+getRandomInt();
+
+const checkMaxStringLength = function(checkedString, maxLength) {
+  if (checkedString.length <= maxLength) {
+    return true;
+  }
+  return false;
+};
+checkMaxStringLength();
