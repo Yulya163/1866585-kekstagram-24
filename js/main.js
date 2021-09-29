@@ -1,14 +1,14 @@
-const getRandomInt = function(from, to) {
+const getRandomInt = (from, to) => {
   if (from >=0 && to >= 0) {
     from = Math.ceil(from);
     to = Math.floor(to);
     return Math.floor(Math.random() * (to - from + 1)) + from;
   }
-  return 'Введите положительный диапазон';
+  return false;
 };
 getRandomInt();
 
-const checkMaxStringLength = function(checkedString, maxLength) {
+const checkMaxStringLength = (checkedString, maxLength) => {
   if (checkedString.length <= maxLength) {
     return true;
   }
