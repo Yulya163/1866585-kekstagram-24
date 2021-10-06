@@ -29,6 +29,10 @@ const DESCRIPTION = [
   'Найдите меня на фотографии)))',
 ];
 
+const MAX_COMMENTS_NUMBER = 4;
+
+const USER_PHOTOS_COUNT = 25;
+
 const getRandomInt = (from, to) => {
   const lower = Math.ceil(Math.min(Math.abs(from), Math.abs(to)));
   const upper = Math.floor(Math.max(Math.abs(from), Math.abs(to)));
@@ -36,16 +40,14 @@ const getRandomInt = (from, to) => {
   return Math.floor(result);
 };
 
-const COMMENT_ID = [];
-
-const MAX_COMMENTS_NUMBER = 4;
+const commentIds = [];
 
 const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
 
 const createCommentId = (index) => {
 
-  COMMENT_ID.push(index);
-  return COMMENT_ID.length;
+  commentIds.push(index);
+  return commentIds.length;
 };
 
 const createComments = (index) => ({
@@ -65,8 +67,8 @@ const createPhoto = (index) => ({
   comments: userComments(),
 });
 
-const userPhotos = Array.from({length: 25}, (item, key) => createPhoto(key + 1));
+const userPhotos = Array.from({length: USER_PHOTOS_COUNT}, (item, key) => createPhoto(key + 1));
 console.log(userPhotos);
 
 const checkMaxStringLength = (checkedString, maxLength) => checkedString.length <= maxLength;
-checkMaxStringLength();
+checkMaxStringLength('Проверка работы', 10);
