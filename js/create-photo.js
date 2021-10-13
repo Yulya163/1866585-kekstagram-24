@@ -27,4 +27,4 @@ const createPhoto = (index) => ({
 
 const userPhotos = Array.from({length: USER_PHOTOS_COUNT}, (item, key) => createPhoto(key + 1));
 
-export {userPhotos};
+export {userPhotos, createPhoto};
