@@ -1,4 +1,4 @@
-import {NAMES, MESSAGE, DESCRIPTION, MAX_COMMENTS_NUMBER, USER_PHOTOS_COUNT} from './constants.js';
+import {NAMES, MESSAGE, DESCRIPTION, MAX_COMMENTS_NUMBER, USER_PHOTOS_COUNT} from './mocks/constants.js';
 import {getRandomInt, getRandomArrayElement} from './helpers.js';
 
 const commentIds = [];
