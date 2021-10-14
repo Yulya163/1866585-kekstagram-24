@@ -1,5 +1,3 @@
-import {userPhotos} from './create-photo.js';
-import {picturesWrap} from './thumbnails-render.js';
+import {popupPicture} from './full-size-picture-render.js';
 
-console.log(picturesWrap);
-console.log(userPhotos);
+popupPicture();
