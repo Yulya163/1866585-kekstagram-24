@@ -10,4 +10,6 @@ const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.le
 const checkMaxStringLength = (checkedString, maxLength) => checkedString.length <= maxLength;
 checkMaxStringLength('Проверка работы', 10);
 
-export {getRandomInt, getRandomArrayElement};
+const isEscapeKey = (evt) => evt.key === 'Escape';
+
+export {getRandomInt, getRandomArrayElement, isEscapeKey};
