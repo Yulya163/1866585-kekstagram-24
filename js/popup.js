@@ -13,6 +13,7 @@ const onBigPictureEscKeydown = (evt) => {
 
 function openBigPicture(evtEl) {
   bigPicture.classList.remove('hidden');
+  document.body.classList.add('modal-open');
   fullSizePictureRender(evtEl);
   document.addEventListener('keydown', onBigPictureEscKeydown);
 }

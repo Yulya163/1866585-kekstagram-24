@@ -10,8 +10,6 @@ document.querySelector('.social__comment-count').classList.add('hidden');
 document.querySelector('.comments-loader').classList.add('hidden');
 
 const fullSizePictureRender = (evt) => {
-  bigPicture.classList.remove('hidden');
-  document.body.classList.add('modal-open');
   const pictureSrc = evt.target.src;
   bigPicture.querySelector('.big-picture__img img').src = pictureSrc;
 
