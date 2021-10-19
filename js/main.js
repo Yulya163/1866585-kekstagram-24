@@ -1,3 +1,2 @@
-import {popupPicture} from './full-size-picture-render.js';
-
-popupPicture();
+import './popup.js';
+import './form.js';
