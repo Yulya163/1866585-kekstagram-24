@@ -1,6 +1,6 @@
 import {fullSizePictureRender, commentsWrapClear, bigPicture} from './full-size-picture-render.js';
 import {picturesWrap} from './thumbnails-render.js';
-import {isEscapeKey} from './helpers.js';
+import {isEscapeKey} from './utils.js';
 
 const bigPictureCloseElement = bigPicture.querySelector('.big-picture__cancel');
 
