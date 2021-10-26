@@ -1,8 +1,9 @@
 import {isEscapeKey} from './utils.js';
 import {hashtagValidate, commentValidate} from './validate.js';
+import {onEffectChange} from '../nouislider/nouislider-effect-level.js';
 
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
-const imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview');
+const imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview img');
 const uploadCancel = imgUploadOverlay.querySelector('#upload-cancel');
 
 const uploadFileInput = document.querySelector('#upload-file');
@@ -30,6 +31,7 @@ function openImgUploadOverlay() {
   changeScale();
   hashtagValidate();
   commentValidate();
+  onEffectChange();
   document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
 }
 
@@ -53,7 +55,6 @@ const onScaleBiggerBtnClick = () => {
 };
 
 function changeScale() {
-  scaleControlInput.value = '100%';
   scaleSmallerBtn.addEventListener('click', onScaleSmallerBtnClick);
   scaleBiggerBtn.addEventListener('click', onScaleBiggerBtnClick);
 }
@@ -65,7 +66,6 @@ function closeImgUploadOverlay() {
   uploadFileInput.value = '';
   scaleControlInput.value = '100%';
   imgUploadPreview.style.transform = 'scale(1)';
-  effectLevelInput.value = '';
   hashtagsText.value = '';
   commentText.value = '';
   scaleSmallerBtn.removeEventListener('click', onScaleSmallerBtnClick);
@@ -80,4 +80,4 @@ uploadCancel.addEventListener('click', () => {
   closeImgUploadOverlay();
 });
 
-export {hashtagsText, commentText};
+export {hashtagsText, commentText, imgUploadPreview, effectLevelInput};
