@@ -1,7 +1,10 @@
-import {isEscapeKey} from './utils.js';
+import {isEscapeKey, showAndCloseStatusMessage} from './utils.js';
 import {hashtagValidate, commentValidate} from './validate.js';
+import {SCALE_NUMBER_MIN, SCALE_NUMBER_MAX, SCALE_NUMBER_STEP} from './mocks/constants.js';
 import {onEffectChange} from '../nouislider/nouislider-effect-level.js';
+import {sendData} from './api.js';
 
+const imgUploadForm = document.querySelector('.img-upload__form');
 const imgUploadOverlay = document.querySelector('.img-upload__overlay');
 const imgUploadPreview = imgUploadOverlay.querySelector('.img-upload__preview img');
 const uploadCancel = imgUploadOverlay.querySelector('#upload-cancel');
@@ -35,41 +38,38 @@ function openImgUploadOverlay() {
   document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
 }
 
-const onScaleSmallerBtnClick = () => {
+const onChangeBtnClick = (evt) => {
   let scaleNumber = scaleControlInput.value.slice(0, -1);
-  if (scaleNumber !== '25') {
-    scaleNumber -= 25;
-  }
-  scaleControlInput.value = `${scaleNumber}%`;
-  imgUploadPreview.style.transform = `scale(${ (scaleNumber / 100) })`;
-};
-
-const onScaleBiggerBtnClick = () => {
-  let scaleNumber = scaleControlInput.value.slice(0, -1);
-  if (scaleNumber !== '100') {
-    scaleNumber = Number(scaleNumber);
-    scaleNumber += 25;
+  scaleNumber = Number(scaleNumber);
+  if (evt.target === scaleSmallerBtn && scaleNumber !== SCALE_NUMBER_MIN) {
+    scaleNumber -= SCALE_NUMBER_STEP;
+  } else if (evt.target === scaleBiggerBtn && scaleNumber !== SCALE_NUMBER_MAX) {
+    scaleNumber += SCALE_NUMBER_STEP;
   }
   scaleControlInput.value = `${scaleNumber}%`;
   imgUploadPreview.style.transform = `scale(${ (scaleNumber / 100) })`;
 };
 
 function changeScale() {
-  scaleSmallerBtn.addEventListener('click', onScaleSmallerBtnClick);
-  scaleBiggerBtn.addEventListener('click', onScaleBiggerBtnClick);
+  scaleSmallerBtn.addEventListener('click', onChangeBtnClick);
+  scaleBiggerBtn.addEventListener('click', onChangeBtnClick);
 }
 
 function closeImgUploadOverlay() {
   imgUploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
+  scaleSmallerBtn.removeEventListener('click', onChangeBtnClick);
+  scaleBiggerBtn.removeEventListener('click', onChangeBtnClick);
+  resetForm();
+}
+
+function resetForm () {
   uploadFileInput.value = '';
   scaleControlInput.value = '100%';
   imgUploadPreview.style.transform = 'scale(1)';
   hashtagsText.value = '';
   commentText.value = '';
-  scaleSmallerBtn.removeEventListener('click', onScaleSmallerBtnClick);
-  scaleBiggerBtn.removeEventListener('click', onScaleBiggerBtnClick);
 }
 
 uploadFileInput.addEventListener('change', () => {
@@ -80,4 +80,16 @@ uploadCancel.addEventListener('click', () => {
   closeImgUploadOverlay();
 });
 
-export {hashtagsText, commentText, imgUploadPreview, effectLevelInput};
+const setImgUploadFormSubmit = (onSuccess) => {
+  imgUploadForm.addEventListener('submit', (evt) => {
+    evt.preventDefault();
+    sendData(
+      () => showAndCloseStatusMessage('success'),
+      () => showAndCloseStatusMessage('error'),
+      () => onSuccess(),
+      new FormData(evt.target),
+    );
+  });
+};
+
+export {hashtagsText, commentText, imgUploadPreview, effectLevelInput, closeImgUploadOverlay, setImgUploadFormSubmit};

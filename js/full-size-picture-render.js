@@ -1,4 +1,3 @@
-import {userPhotos} from './create-photo.js';
 import {showComments} from './show-comments.js';
 
 const bigPicture = document.querySelector('.big-picture');
@@ -7,7 +6,7 @@ const commentsWrap = bigPicture.querySelector('.social__comments');
 const commentTemplate = commentsWrap.querySelector('.social__comment');
 const commentsFragment = document.createDocumentFragment();
 
-const fullSizePictureRender = (evt) => {
+const fullSizePictureRender = (evt, userPhotos) => {
   commentsWrap.innerHTML = '';
 
   const pictureSrc = evt.target.src;
@@ -25,7 +24,7 @@ const fullSizePictureRender = (evt) => {
     commentsWrap.innerHTML = '';
     const newComment = commentTemplate.cloneNode(true);
     newComment.querySelector('.social__picture').src = item.avatar;
-    newComment.querySelector('.social__picture').alt = item.userName;
+    newComment.querySelector('.social__picture').alt = item.name;
     newComment.querySelector('.social__text').textContent = item.message;
     commentsFragment.appendChild(newComment);
   });
