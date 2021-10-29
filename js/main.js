@@ -1,4 +1,13 @@
-import '../nouislider/nouislider.js';
-import '../nouislider/nouislider-effect-level.js';
-import './popup.js';
-import './form.js';
+import {thumbnailsRender} from './thumbnails-render.js';
+import {closeImgUploadOverlay, setImgUploadFormSubmit} from './form.js';
+import {showAlert} from './utils.js';
+import {getData} from './api.js';
+
+getData(
+  (photos) => {
+    thumbnailsRender(photos);
+  },
+  () => showAlert('Не удалось загрузить фотографии. Попробуйте перезагрузить страницу'),
+);
+
+setImgUploadFormSubmit(closeImgUploadOverlay);

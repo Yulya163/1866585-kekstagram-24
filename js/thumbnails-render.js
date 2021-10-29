@@ -1,4 +1,4 @@
-import {userPhotos} from './create-photo.js';
+import {popup} from './popup.js';
 
 const picturesWrap = document.querySelector('.pictures');
 
@@ -8,14 +8,18 @@ const pictureTemplate = document.querySelector('#picture')
 
 const usersPhotoListFragment = document.createDocumentFragment();
 
-userPhotos.forEach(({url, likes, comments}) => {
-  const photoElement = pictureTemplate.cloneNode(true);
-  photoElement.querySelector('.picture__img').src = url;
-  photoElement.querySelector('.picture__likes').textContent = likes;
-  photoElement.querySelector('.picture__comments').textContent = comments.length;
-  usersPhotoListFragment.appendChild(photoElement);
-});
+const thumbnailsRender = (userPhotos) => {
+  userPhotos.forEach(({url, likes, comments}) => {
+    const photoElement = pictureTemplate.cloneNode(true);
+    photoElement.querySelector('.picture__img').src = url;
+    photoElement.querySelector('.picture__likes').textContent = likes;
+    photoElement.querySelector('.picture__comments').textContent = comments.length;
+    usersPhotoListFragment.appendChild(photoElement);
+  });
 
-picturesWrap.appendChild(usersPhotoListFragment);
+  picturesWrap.appendChild(usersPhotoListFragment);
 
-export {picturesWrap};
+  popup(userPhotos);
+};
+
+export {thumbnailsRender, picturesWrap};

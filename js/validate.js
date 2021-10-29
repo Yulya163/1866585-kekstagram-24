@@ -29,12 +29,16 @@ const onHashtagsTextInput = () => {
 
   if (duplicateHashtagsArr && duplicateHashtagsArr.length !== 0) {
     hashtagsText.setCustomValidity(`Пожалуйста, удалите повторяющиеся хэш-теги: ${ duplicateHashtagsArr.join(', ') }`);
+    hashtagsText.style.borderColor = 'red';
   } else if (hashtagsArr.length > MAX_HASHTAG_QUANTITY) {
     hashtagsText.setCustomValidity(`Нельзя указывать больше ${ MAX_HASHTAG_QUANTITY } хэш-тегов. Просьба удалить лишние ${ hashtagsArr.length - MAX_HASHTAG_QUANTITY }`);
+    hashtagsText.style.borderColor = 'red';
   } else if (invalidHashtagsArr.length !== 0) {
     hashtagsText.setCustomValidity(`Некорректно введен хэш-тег: ${ invalidHashtagsArr.join(', ') }`);
+    hashtagsText.style.borderColor = 'red';
   } else {
     hashtagsText.setCustomValidity('');
+    hashtagsText.style.borderColor = '';
   }
   hashtagsText.reportValidity();
 };
@@ -43,8 +47,10 @@ const onCommentTextInput = () => {
   const valueLength = commentText.value.length;
   if (valueLength > MAX_COMMENT_LENGTH) {
     commentText.setCustomValidity(`Удалите лишние ${  valueLength - MAX_COMMENT_LENGTH } симв.`);
+    commentText.style.borderColor = 'red';
   } else {
     commentText.setCustomValidity('');
+    commentText.style.borderColor = '';
   }
   commentText.reportValidity();
 };
