@@ -4,6 +4,7 @@ import {showAlert} from './utils.js';
 import {getData} from './api.js';
 
 getData(
+  'https://24.javascript.pages.academy/kekstagram/data',
   (photos) => {
     thumbnailsRender(photos);
   },
