@@ -1,3 +1,5 @@
+const ALERT_SHOW_TIME = 5000;
+
 const getRandomInt = (from, to) => {
   const lower = Math.ceil(Math.min(Math.abs(from), Math.abs(to)));
   const upper = Math.floor(Math.max(Math.abs(from), Math.abs(to)));
@@ -5,11 +7,8 @@ const getRandomInt = (from, to) => {
   return Math.floor(result);
 };
 
-const getRandomArrayElement = (elements) => elements[getRandomInt(0, elements.length - 1)];
-
 const isEscapeKey = (evt) => evt.key === 'Escape';
 
-const ALERT_SHOW_TIME = 5000;
 const showAlert = (message) => {
   const alertContainer = document.createElement('div');
 
@@ -70,4 +69,12 @@ function showAndCloseStatusMessage(status) {
   });
 }
 
-export {getRandomInt, getRandomArrayElement, isEscapeKey, showAlert, showAndCloseStatusMessage};
+function debounce (callback, timeoutDelay = 500) {
+  let timeoutId;
+  return (...rest) => {
+    clearTimeout(timeoutId);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
+  };
+}
+
+export {getRandomInt, isEscapeKey, showAlert, showAndCloseStatusMessage, debounce};

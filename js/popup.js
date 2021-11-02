@@ -1,4 +1,3 @@
-import '../nouislider/nouislider.js';
 import '../nouislider/nouislider-effect-level.js';
 import {fullSizePictureRender, commentsWrapClear, bigPicture} from './full-size-picture-render.js';
 import {picturesWrap} from './thumbnails-render.js';
