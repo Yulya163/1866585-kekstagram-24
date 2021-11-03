@@ -1,4 +1,4 @@
-import {MAX_HASHTAG_QUANTITY, MAX_COMMENT_LENGTH} from './mocks/constants.js';
+import {MAX_HASHTAG_QUANTITY, MAX_COMMENT_LENGTH} from './constants.js';
 import {hashtagsText, commentText} from './form.js';
 
 const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;

@@ -1,5 +1,5 @@
 import {commentsWrap} from './full-size-picture-render.js';
-import {MAX_START_VISIBLE_COMMENTS_NUMBER, UPLOAD_COMMENTS_NUMBER} from './mocks/constants.js';
+import {MAX_START_VISIBLE_COMMENTS_NUMBER, UPLOAD_COMMENTS_NUMBER} from './constants.js';
 
 const commentsLoaderBtn = document.querySelector('.comments-loader');
 const commentUploadCount = document.querySelector('.comments-upload-count');

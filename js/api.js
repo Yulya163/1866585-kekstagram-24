@@ -1,5 +1,5 @@
-const getData = (onSuccess, onError) => {
-  fetch('https://24.javascript.pages.academy/kekstagram/data')
+const getData = (url, onSuccess, onError) => {
+  fetch(url)
     .then((response) => {
       if(response.ok) {
         return response;
@@ -7,17 +7,17 @@ const getData = (onSuccess, onError) => {
       throw new Error('Не удалось загрузить фотографии. Попробуйте перезагрузить страницу');
     })
     .then((response) => response.json())
-    .then((photos) => {
-      onSuccess(photos);
+    .then((data) => {
+      onSuccess(data);
     })
     .catch((err) => {
       onError(err);
     });
 };
 
-const sendData = (onPositiveResult, onFailResult, onFinallyResult, body) => {
+const sendData = (url, onPositiveResult, onFailResult, body) => {
   fetch(
-    'https://24.javascript.pages.academy/kekstagram',
+    url,
     {
       method: 'POST',
       body,
@@ -25,16 +25,13 @@ const sendData = (onPositiveResult, onFailResult, onFinallyResult, body) => {
   )
     .then((response) => {
       if (response.ok) {
-        onPositiveResult('success');
+        onPositiveResult();
       } else {
-        onFailResult('error');
+        throw new Error();
       }
     })
-    .catch(() => {
-      onPositiveResult('error');
-    })
-    .finally(() => {
-      onFinallyResult();
+    .catch((err) => {
+      onFailResult(err);
     });
 };
 

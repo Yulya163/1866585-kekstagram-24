@@ -1,6 +1,6 @@
 import {isEscapeKey, showAndCloseStatusMessage} from './utils.js';
 import {hashtagValidate, commentValidate} from './validate.js';
-import {SCALE_NUMBER_MIN, SCALE_NUMBER_MAX, SCALE_NUMBER_STEP} from './mocks/constants.js';
+import {SCALE_NUMBER_MIN, SCALE_NUMBER_MAX, SCALE_NUMBER_STEP} from './constants.js';
 import {onEffectChange} from '../nouislider/nouislider-effect-level.js';
 import {sendData} from './api.js';
 
@@ -80,13 +80,19 @@ uploadCancel.addEventListener('click', () => {
   closeImgUploadOverlay();
 });
 
-const setImgUploadFormSubmit = (onSuccess) => {
+const setImgUploadFormSubmit = (onResponse) => {
   imgUploadForm.addEventListener('submit', (evt) => {
     evt.preventDefault();
     sendData(
-      () => showAndCloseStatusMessage('success'),
-      () => showAndCloseStatusMessage('error'),
-      () => onSuccess(),
+      'https://24.javascript.pages.academy/kekstagram',
+      () => {
+        showAndCloseStatusMessage('success');
+        onResponse();
+      },
+      () => {
+        showAndCloseStatusMessage('error');
+        onResponse();
+      },
       new FormData(evt.target),
     );
   });
