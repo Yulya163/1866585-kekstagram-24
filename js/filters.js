@@ -1,9 +1,10 @@
+import {thumbnailsRender, thumbnailsRandomRender, thumbnailsDiscussedRender} from './thumbnails-render.js';
+import {RERENDER_DELAY} from './constants.js';
+import {debounce} from './utils.js';
+
 const filtersWrap = document.querySelector('.img-filters');
 const filtersForm = filtersWrap.querySelector('.img-filters__form');
-const filtersFormBtns = filtersForm.querySelectorAll('.img-filters__button');
-const filterDefaultBtn = filtersForm.querySelector('#filter-default');
-const filterRandomBtn = filtersForm.querySelector('#filter-random');
-const filterDiscussedBtn = filtersForm.querySelector('#filter-discussed');
+const filtersFormBtns = filtersWrap.querySelectorAll('.img-filters__button');
 
 const setStartValueFilterBtn = () => {
   filtersWrap.classList.remove('img-filters--inactive');
@@ -16,34 +17,30 @@ const setStartValueFilterBtn = () => {
   });
 };
 
-const setFilterDefaultClick = (cb) => {
-  filterDefaultBtn.addEventListener('click', (evt) => {
+const filterPhotos = (evt, photos) => {
+  if (evt.target === document.getElementById('filter-default')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-    cb();
-  });
-};
-
-const setFilterRandomClick = (cb) => {
-  filterRandomBtn.addEventListener('click', (evt) => {
+    thumbnailsRender(photos);
+  }
+  if (evt.target === document.getElementById('filter-random')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-    cb();
-  });
-};
-
-const setFilterDiscussedClick = (cb) => {
-  filterDiscussedBtn.addEventListener('click', (evt) => {
+    thumbnailsRandomRender(photos);
+  }
+  if (evt.target === document.getElementById('filter-discussed')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
-    cb();
-  });
+    thumbnailsDiscussedRender(photos);
+  }
 };
 
-export {setStartValueFilterBtn, setFilterDefaultClick, setFilterRandomClick, setFilterDiscussedClick};
+const debounced = debounce(filterPhotos, RERENDER_DELAY);
+
+export {setStartValueFilterBtn, debounced, filtersForm};
