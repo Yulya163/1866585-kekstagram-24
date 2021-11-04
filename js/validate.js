@@ -6,35 +6,35 @@ const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const onHashtagsTextInput = () => {
   hashtagsText.value = hashtagsText.value.replaceAll('  ', ' ');
 
-  const hashtagsArr = hashtagsText.value.split(' ');
-  const invalidHashtagsArr = [];
+  const hashtags = hashtagsText.value.split(' ');
+  const invalidHashtags = [];
 
-  if (hashtagsArr[0] === '') {
-    hashtagsArr.shift();
+  if (hashtags[0] === '') {
+    hashtags.shift();
   }
-  if (hashtagsArr[hashtagsArr.length - 1] === '') {
-    hashtagsArr.pop();
+  if (hashtags[hashtags.length - 1] === '') {
+    hashtags.pop();
   }
-  hashtagsArr.forEach((hashtag) => {
+  hashtags.forEach((hashtag) => {
     if (!hashtag.match(re)) {
-      invalidHashtagsArr.push(hashtag);
+      invalidHashtags.push(hashtag);
     }
   });
 
-  for (let i = 0; i < hashtagsArr.length; i++) {
-    hashtagsArr[i] = hashtagsArr[i].toLowerCase();
+  for (let i = 0; i < hashtags.length; i++) {
+    hashtags[i] = hashtags[i].toLowerCase();
   }
 
-  const duplicateHashtagsArr = hashtagsArr.filter((hashtag, index, arr) => arr.indexOf(hashtag) !== index);
+  const duplicateHashtags = hashtags.filter((hashtag, index, array) => array.indexOf(hashtag) !== index);
 
-  if (duplicateHashtagsArr && duplicateHashtagsArr.length !== 0) {
-    hashtagsText.setCustomValidity(`Пожалуйста, удалите повторяющиеся хэш-теги: ${ duplicateHashtagsArr.join(', ') }`);
+  if (duplicateHashtags && duplicateHashtags.length !== 0) {
+    hashtagsText.setCustomValidity(`Пожалуйста, удалите повторяющиеся хэш-теги: ${ duplicateHashtags.join(', ') }`);
     hashtagsText.style.borderColor = 'red';
-  } else if (hashtagsArr.length > MAX_HASHTAG_QUANTITY) {
-    hashtagsText.setCustomValidity(`Нельзя указывать больше ${ MAX_HASHTAG_QUANTITY } хэш-тегов. Просьба удалить лишние ${ hashtagsArr.length - MAX_HASHTAG_QUANTITY }`);
+  } else if (hashtags.length > MAX_HASHTAG_QUANTITY) {
+    hashtagsText.setCustomValidity(`Нельзя указывать больше ${ MAX_HASHTAG_QUANTITY } хэш-тегов. Просьба удалить лишние ${ hashtags.length - MAX_HASHTAG_QUANTITY }`);
     hashtagsText.style.borderColor = 'red';
-  } else if (invalidHashtagsArr.length !== 0) {
-    hashtagsText.setCustomValidity(`Некорректно введен хэш-тег: ${ invalidHashtagsArr.join(', ') }`);
+  } else if (invalidHashtags.length !== 0) {
+    hashtagsText.setCustomValidity(`Некорректно введен хэш-тег: ${ invalidHashtags.join(', ') }`);
     hashtagsText.style.borderColor = 'red';
   } else {
     hashtagsText.setCustomValidity('');
