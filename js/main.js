@@ -5,6 +5,7 @@ import {getData} from './api.js';
 import {setStartValueFilterBtn} from './filters.js';
 import {thumbnailsRender} from './thumbnails-render.js';
 import {debounced, filtersForm} from './filters.js';
+import './photo-upload.js';
 
 getData(
   'https://24.javascript.pages.academy/kekstagram/data',

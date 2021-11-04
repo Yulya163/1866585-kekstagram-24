@@ -98,4 +98,4 @@ const setImgUploadFormSubmit = (onResponse) => {
   });
 };
 
-export {hashtagsText, commentText, imgUploadPreview, effectLevelInput, closeImgUploadOverlay, setImgUploadFormSubmit};
+export {hashtagsText, commentText, uploadFileInput, imgUploadPreview, effectLevelInput, closeImgUploadOverlay, setImgUploadFormSubmit};
