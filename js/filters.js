@@ -11,28 +11,28 @@ const setStartValueFilterBtn = () => {
 
   filtersFormBtns.forEach((filtersFormBtn) => {
     filtersFormBtn.classList.remove('img-filters__button--active');
-    if (filtersFormBtn === document.getElementById('filter-default')) {
+    if (filtersFormBtn === document.querySelector('#filter-default')) {
       filtersFormBtn.classList.add('img-filters__button--active');
     }
   });
 };
 
 const filterPhotos = (evt, photos) => {
-  if (evt.target === document.getElementById('filter-default')) {
+  if (evt.target === document.querySelector('#filter-default')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
     thumbnailsRender(photos);
   }
-  if (evt.target === document.getElementById('filter-random')) {
+  if (evt.target === document.querySelector('#filter-random')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
     evt.target.classList.add('img-filters__button--active');
     thumbnailsRandomRender(photos);
   }
-  if (evt.target === document.getElementById('filter-discussed')) {
+  if (evt.target === document.querySelector('#filter-discussed')) {
     filtersFormBtns.forEach((filtersFormBtn) => {
       filtersFormBtn.classList.remove('img-filters__button--active');
     });
