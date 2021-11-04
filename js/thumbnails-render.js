@@ -1,4 +1,4 @@
-import {popup} from './popup.js';
+import {setPopup} from './popup.js';
 import {RANDOM_NON_REPEAT_PHOTOS_QUANTITY} from './constants.js';
 
 const picturesWrap = document.querySelector('.pictures');
@@ -25,7 +25,7 @@ const thumbnailsRender = (userPhotos) => {
   });
   resetArray();
   picturesWrap.appendChild(usersPhotoListFragment);
-  popup(userPhotos);
+  setPopup(userPhotos);
 };
 
 const thumbnailsRandomRender = (userPhotos) => {
@@ -42,7 +42,7 @@ const thumbnailsRandomRender = (userPhotos) => {
     });
   resetArray();
   picturesWrap.appendChild(usersPhotoListFragment);
-  popup(userPhotos);
+  setPopup(userPhotos);
 };
 
 const comparePhotos = (photoA, photoB) => {
@@ -64,7 +64,7 @@ const thumbnailsDiscussedRender = (userPhotos) => {
     });
   resetArray();
   picturesWrap.appendChild(usersPhotoListFragment);
-  popup(userPhotos);
+  setPopup(userPhotos);
 };
 
 export {thumbnailsRender, thumbnailsRandomRender, thumbnailsDiscussedRender, picturesWrap};

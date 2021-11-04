@@ -3,7 +3,7 @@ import {fullSizePictureRender, commentsWrapClear, bigPicture} from './full-size-
 import {picturesWrap} from './thumbnails-render.js';
 import {isEscapeKey} from './utils.js';
 
-const popup = (userPhotos) => {
+const setPopup = (userPhotos) => {
   const bigPictureCloseElement = bigPicture.querySelector('.big-picture__cancel');
 
   const onBigPictureEscKeydown = (evt) => {
@@ -38,4 +38,4 @@ const popup = (userPhotos) => {
   });
 };
 
-export {popup};
+export {setPopup};
