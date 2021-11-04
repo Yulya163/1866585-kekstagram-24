@@ -6,7 +6,7 @@ const re = /^#[A-Za-zА-Яа-яЁё0-9]{1,19}$/;
 const onHashtagsTextInput = () => {
   hashtagsText.value = hashtagsText.value.replaceAll('  ', ' ');
 
-  const hashtags = hashtagsText.value.split(' ');
+  let hashtags = hashtagsText.value.split(' ');
   const invalidHashtags = [];
 
   if (hashtags[0] === '') {
@@ -21,9 +21,7 @@ const onHashtagsTextInput = () => {
     }
   });
 
-  for (let i = 0; i < hashtags.length; i++) {
-    hashtags[i] = hashtags[i].toLowerCase();
-  }
+  hashtags = hashtags.map((hashtag) => hashtag.toLowerCase());
 
   const duplicateHashtags = hashtags.filter((hashtag, index, array) => array.indexOf(hashtag) !== index);
 
