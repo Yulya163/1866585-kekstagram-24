@@ -7,7 +7,7 @@ const commentUploadCount = document.querySelector('.comments-upload-count');
 const showComments = () => {
   const comments = Array.from(commentsWrap.children);
   const commentsNumber = comments.length;
-  const uploadedСomments = [];
+  const uploadedComments = [];
 
   comments.forEach((comment) => {
     comment.classList.add('hidden');
@@ -16,9 +16,9 @@ const showComments = () => {
   if (commentsNumber > MAX_START_VISIBLE_COMMENTS_NUMBER) {
     for (let i = 0; i < MAX_START_VISIBLE_COMMENTS_NUMBER; i++) {
       comments[i].classList.remove('hidden');
-      uploadedСomments.push(comments[i]);
+      uploadedComments.push(comments[i]);
     }
-    commentUploadCount.textContent = uploadedСomments.length;
+    commentUploadCount.textContent = uploadedComments.length;
     commentsLoaderBtn.classList.remove('hidden');
     commentsLoaderBtn.addEventListener('click', onCommentsLoaderBtnClick);
   } else {
@@ -30,16 +30,16 @@ const showComments = () => {
   }
 
   function onCommentsLoaderBtnClick() {
-    const uploadedСommentsLength = uploadedСomments.length;
-    for (let i = uploadedСommentsLength; i < (uploadedСommentsLength + UPLOAD_COMMENTS_NUMBER); i++) {
+    const uploadedCommentsLength = uploadedComments.length;
+    for (let i = uploadedCommentsLength; i < (uploadedCommentsLength + UPLOAD_COMMENTS_NUMBER); i++) {
       if(comments[i]) {
         comments[i].classList.remove('hidden');
-        uploadedСomments.push(comments[i]);
-        commentUploadCount.textContent = uploadedСomments.length;
+        uploadedComments.push(comments[i]);
+        commentUploadCount.textContent = uploadedComments.length;
       }
     }
 
-    if (uploadedСomments.length === commentsNumber) {
+    if (uploadedComments.length === commentsNumber) {
       commentsLoaderBtn.classList.add('hidden');
       commentsLoaderBtn.removeEventListener('click', onCommentsLoaderBtnClick);
     }
