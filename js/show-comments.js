@@ -13,6 +13,21 @@ const showComments = () => {
     comment.classList.add('hidden');
   });
 
+  const onCommentsLoaderBtnClick = () => {
+    const uploadedCommentsLength = uploadedComments.length;
+    for (let i = uploadedCommentsLength; i < (uploadedCommentsLength + UPLOAD_COMMENTS_NUMBER); i++) {
+      if(comments[i]) {
+        comments[i].classList.remove('hidden');
+        uploadedComments.push(comments[i]);
+        commentUploadCount.textContent = uploadedComments.length;
+      }
+    }
+    if (uploadedComments.length === commentsNumber) {
+      commentsLoaderBtn.classList.add('hidden');
+      commentsLoaderBtn.removeEventListener('click', onCommentsLoaderBtnClick);
+    }
+  };
+
   if (commentsNumber > MAX_START_VISIBLE_COMMENTS_NUMBER) {
     for (let i = 0; i < MAX_START_VISIBLE_COMMENTS_NUMBER; i++) {
       comments[i].classList.remove('hidden');
@@ -29,20 +44,6 @@ const showComments = () => {
     commentUploadCount.textContent = comments.length;
   }
 
-  function onCommentsLoaderBtnClick() {
-    const uploadedCommentsLength = uploadedComments.length;
-    for (let i = uploadedCommentsLength; i < (uploadedCommentsLength + UPLOAD_COMMENTS_NUMBER); i++) {
-      if(comments[i]) {
-        comments[i].classList.remove('hidden');
-        uploadedComments.push(comments[i]);
-        commentUploadCount.textContent = uploadedComments.length;
-      }
-    }
-
-    if (uploadedComments.length === commentsNumber) {
-      commentsLoaderBtn.classList.add('hidden');
-      commentsLoaderBtn.removeEventListener('click', onCommentsLoaderBtnClick);
-    }
-  }
 };
+
 export {showComments};

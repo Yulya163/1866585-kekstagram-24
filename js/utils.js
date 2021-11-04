@@ -33,7 +33,7 @@ const showAlert = (message) => {
   }, ALERT_SHOW_TIME);
 };
 
-function showAndCloseStatusMessage(status) {
+const showAndCloseStatusMessage = (status) => {
   const messageTemplate = document.querySelector(`#${status}`)
     .content
     .querySelector(`.${status}`);
@@ -60,14 +60,14 @@ function showAndCloseStatusMessage(status) {
       closeMessage();
     }
   });
-}
+};
 
-function debounce (callback, timeoutDelay = 500) {
+const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
   return (...rest) => {
     clearTimeout(timeoutId);
     timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
-}
+};
 
 export {isEscapeKey, showAlert, showAndCloseStatusMessage, debounce};

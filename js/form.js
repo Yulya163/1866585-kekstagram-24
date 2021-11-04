@@ -19,24 +19,13 @@ const commentText = imgUploadOverlay.querySelector('.text__description');
 const scaleBiggerBtn = document.querySelector('.scale__control--bigger');
 const scaleSmallerBtn = document.querySelector('.scale__control--smaller');
 
-const onImgUploadOverlayEscKeydown = (evt) => {
-  if (hashtagsText !== document.activeElement && commentText !== document.activeElement) {
-    if (isEscapeKey(evt)) {
-      evt.preventDefault();
-      closeImgUploadOverlay();
-    }
-  }
+const resetForm = () => {
+  uploadFileInput.value = '';
+  scaleControlInput.value = '100%';
+  imgUploadPreview.style.transform = 'scale(1)';
+  hashtagsText.value = '';
+  commentText.value = '';
 };
-
-function openImgUploadOverlay() {
-  imgUploadOverlay.classList.remove('hidden');
-  document.body.classList.add('modal-open');
-  changeScale();
-  hashtagValidate();
-  commentValidate();
-  onEffectChange();
-  document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
-}
 
 const onChangeBtnClick = (evt) => {
   let scaleNumber = scaleControlInput.value.slice(0, -1);
@@ -50,27 +39,38 @@ const onChangeBtnClick = (evt) => {
   imgUploadPreview.style.transform = `scale(${ (scaleNumber / 100) })`;
 };
 
-function changeScale() {
-  scaleSmallerBtn.addEventListener('click', onChangeBtnClick);
-  scaleBiggerBtn.addEventListener('click', onChangeBtnClick);
-}
-
-function closeImgUploadOverlay() {
+const closeImgUploadOverlay = () => {
   imgUploadOverlay.classList.add('hidden');
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
   scaleSmallerBtn.removeEventListener('click', onChangeBtnClick);
   scaleBiggerBtn.removeEventListener('click', onChangeBtnClick);
   resetForm();
+};
+
+function onImgUploadOverlayEscKeydown(evt) {
+  if (hashtagsText !== document.activeElement && commentText !== document.activeElement) {
+    if (isEscapeKey(evt)) {
+      evt.preventDefault();
+      closeImgUploadOverlay();
+    }
+  }
 }
 
-function resetForm () {
-  uploadFileInput.value = '';
-  scaleControlInput.value = '100%';
-  imgUploadPreview.style.transform = 'scale(1)';
-  hashtagsText.value = '';
-  commentText.value = '';
-}
+const changeScale = () => {
+  scaleSmallerBtn.addEventListener('click', onChangeBtnClick);
+  scaleBiggerBtn.addEventListener('click', onChangeBtnClick);
+};
+
+const openImgUploadOverlay = () => {
+  imgUploadOverlay.classList.remove('hidden');
+  document.body.classList.add('modal-open');
+  changeScale();
+  hashtagValidate();
+  commentValidate();
+  onEffectChange();
+  document.addEventListener('keydown', onImgUploadOverlayEscKeydown);
+};
 
 uploadFileInput.addEventListener('change', () => {
   openImgUploadOverlay();
@@ -98,4 +98,4 @@ const setImgUploadFormSubmit = (onResponse) => {
   });
 };
 
-export {hashtagsText, commentText, uploadFileInput, imgUploadPreview, effectLevelInput, closeImgUploadOverlay, setImgUploadFormSubmit};
+export {hashtagsText, commentText, imgUploadPreview, effectLevelInput, closeImgUploadOverlay, setImgUploadFormSubmit};

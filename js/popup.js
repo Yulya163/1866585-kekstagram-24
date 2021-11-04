@@ -13,12 +13,12 @@ const setPopup = (userPhotos) => {
     }
   };
 
-  function openBigPicture(evtEl, photos) {
+  const openBigPicture = (evtEl, photos) => {
     bigPicture.classList.remove('hidden');
     document.body.classList.add('modal-open');
     fullSizePictureRender(evtEl, photos);
     document.addEventListener('keydown', onBigPictureEscKeydown);
-  }
+  };
 
   function closeBigPicture() {
     bigPicture.classList.add('hidden');

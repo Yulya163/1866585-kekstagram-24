@@ -1,6 +1,5 @@
 import {uploadFileInput, imgUploadPreview} from './form.js';
-
-const FILE_TYPES = ['gif', 'jpg', 'jpeg', 'png'];
+import {FILE_TYPES} from './constants.js';
 
 uploadFileInput.addEventListener('change', () => {
   const file = uploadFileInput.files[0];
