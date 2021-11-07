@@ -39,22 +39,22 @@ const onChangeBtnClick = (evt) => {
   imgUploadPreview.style.transform = `scale(${ (scaleNumber / 100) })`;
 };
 
-const closeImgUploadOverlay = () => {
-  imgUploadOverlay.classList.add('hidden');
-  document.body.classList.remove('modal-open');
-  document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
-  scaleSmallerBtn.removeEventListener('click', onChangeBtnClick);
-  scaleBiggerBtn.removeEventListener('click', onChangeBtnClick);
-  resetForm();
-};
-
-function onImgUploadOverlayEscKeydown(evt) {
+const onImgUploadOverlayEscKeydown = (evt) => {
   if (hashtagsText !== document.activeElement && commentText !== document.activeElement) {
     if (isEscapeKey(evt)) {
       evt.preventDefault();
       closeImgUploadOverlay();
     }
   }
+};
+
+function closeImgUploadOverlay() {
+  imgUploadOverlay.classList.add('hidden');
+  document.body.classList.remove('modal-open');
+  document.removeEventListener('keydown', onImgUploadOverlayEscKeydown);
+  scaleSmallerBtn.removeEventListener('click', onChangeBtnClick);
+  scaleBiggerBtn.removeEventListener('click', onChangeBtnClick);
+  resetForm();
 }
 
 const changeScale = () => {

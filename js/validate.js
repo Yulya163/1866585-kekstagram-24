@@ -23,7 +23,7 @@ const onHashtagsTextInput = () => {
 
   hashtags = hashtags.map((hashtag) => hashtag.toLowerCase());
 
-  const duplicateHashtags = hashtags.filter((hashtag, index, array) => array.indexOf(hashtag) !== index);
+  const duplicateHashtags = hashtags.filter((hashtag, index) => hashtags.indexOf(hashtag) !== index);
 
   if (duplicateHashtags && duplicateHashtags.length !== 0) {
     hashtagsText.setCustomValidity(`Пожалуйста, удалите повторяющиеся хэш-теги: ${ duplicateHashtags.join(', ') }`);
