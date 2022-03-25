@@ -1,5 +1,6 @@
 {
   "name": "kekstagram",
+  "homepage": "https://yulya163.github.io/1866585-kekstagram-24/",
   "version": "24.0.0",
   "private": true,
   "description": "Личный проект «Кекстаграм» от HTML Academy",
@@ -11,15 +12,18 @@
     "url": "https://github.com/htmlacademy-javascript/1866585-kekstagram-24/issues"
   },
   "devDependencies": {
-    "browser-sync": "2.26.14",
+    "browser-sync": "^2.27.9",
     "eslint": "7.18.0",
-    "eslint-config-htmlacademy": "4.1.0"
+    "eslint-config-htmlacademy": "4.1.0",
+    "gh-pages": "^3.2.3"
   },
   "license": "MIT",
   "dependencies": {},
   "scripts": {
     "start": "browser-sync start --server --no-ui --files \"js/**/*.js\"",
-    "test": "eslint js/"
+    "test": "eslint js/",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d build"
   },
   "engines": {
     "node": "14.x",
