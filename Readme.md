@@ -5,7 +5,7 @@
 * Студент: [Юлия Балакирева](https://up.htmlacademy.ru/javascript/24/user/1866585).
 * Демо: [kekstagram](https://yulya163.github.io/1866585-kekstagram-24/)
 
-## В проекте применяется
+### В проекте применяется
 
 nouislider.js
 
