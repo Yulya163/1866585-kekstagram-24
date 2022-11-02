@@ -1,8 +1,13 @@
 # Личный проект «Кекстаграм»
 
+Кекстаграм — сервис просмотра изображений. Пользователям предоставлена возможность загружать свои фотографии или просматривать фотографии, загруженные ранее другими пользователями.
+
 * Студент: [Юлия Балакирева](https://up.htmlacademy.ru/javascript/24/user/1866585).
 * Демо: [kekstagram](https://yulya163.github.io/1866585-kekstagram-24/)
 
+## В проекте применяется
+
+nouislider.js
 
 
 <a href="https://htmlacademy.ru/intensive/javascript"><img align="left" width="50" height="50" alt="HTML Academy" src="https://up.htmlacademy.ru/static/img/intensive/javascript/logo-for-github-2.png"></a>
